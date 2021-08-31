@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="select_page_style.css?Date()">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>六合夜市</title>
+
+</head>
+
+<body>
+    <div class="row">
+        <div class="topnav-centered col-5">
+            <input type="text" id="search_input" placeholder="  Search..." style="font-size:20px; border: 1px solid #3c3d79;border-radius: 30px; background-color: transparent; height: 40px; position: relative; top: 2%;" />
+            <a href="#search" id="search"><i class="fa fa-search" style="color:#3c3d79;font-size:32px;"></i></a>
+        </div>
+        <div class="col-6" style="text-align: right;margin: auto;">
+            <h5 id="username"></h5>
+        </div>
+        <div class="col-1 sign" id="user_area" style="text-align: left;margin: auto; ">
+            <a href="#logout" id="logout"><i class="fa fa-sign-out" title="登出" style="color:#3c3d79;font-size:40px;"></i></a>
+        </div>
+    </div>
+    <div class="slideshow-container" id="slides_area">
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-3">
+                <br />
+                <div class="row">
+                    <div class="card select list ml-4" style="background-color: #ddd;" id="list1" title="all">
+                        <div class="container my-2">
+                            <h4><b>全部</b>&emsp;All</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="card unselect list ml-4" id="list2" title="飲品">
+                        <div class="container my-2">
+                            <h4><b>飲品</b>&emsp;Drink</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="card unselect list ml-4" id="list3" title="燒烤">
+                        <div class="container my-2">
+                            <h4><b>燒烤</b>&emsp;Barbecue</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="card unselect list ml-4" id="list4" title="粥">
+                        <div class="container my-2">
+                            <h4><b>粥</b>&emsp;Porridge</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="card unselect list ml-4" id="list5" title="牛排">
+                        <div class="container my-2">
+                            <h4><b>牛排</b>&emsp;Steak</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-9">
+                <div class="row" id="shop_area">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="myModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Understood</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+
+<script type="text/javascript">
+    var slideIndex = 0;
+    var account_click = 0;
+
+    $("#all").click();
+    $(function() {
+
+
+        // get user
+        $.ajax({
+            url: `user.php`,
+            type: "get",
+            async: false,
+            dataType: "json",
+            success: function(response) {
+                $(response).each(function() {
+                    $("#username").html(`Hi! ${this['name']}`);
+                })
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                console.log(XMLHttpRequest.status);
+            }
+        })
+        if ($("#username").html() == "") {
+            $("#user_area").html(`<a href=#login" id="login"><i class="fa fa-sign-in" title="登入" style="color:#3c3d79;font-size:40px;"></i></a>`);
+
+        }
+
+        // get slides
+        $.ajax({
+            url: `slides.php`,
+            type: "post",
+            async: false,
+            dataType: "json",
+            success: function(response) {
+                $(response).each(function() {
+                    $("#slides_area").append(`
+                        <div class="mySlides fade">
+                            <img src="${this['src']}" height="400" width="90%">
+                        </div>
+                    `);
+                })
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                console.log(XMLHttpRequest.status);
+            }
+        })
+        showSlides();
+        // get shops
+        $.ajax({
+            url: `shops.php`,
+            type: "post",
+            dataType: "json",
+            success: function(response) {
+                $(response).each(function(id) {
+                    $("#shop_area").append(`
+                        <div class="col-5 mx-2 shop_search" id="shop${this['id']}" type="${this['type']}" shop_id="${this['id']}">
+                            <div class="middle">
+                                <h5 class="text">${this['name']}</h5>
+                            </div>
+                            <img class="shop" src="${this['img']}">
+                        </div>
+                    `);
+                })
+
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                console.log(XMLHttpRequest.status);
+            }
+        })
+
+    })
+
+
+    function showSlides() {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        slideIndex++;
+        if (slideIndex > slides.length) {
+            slideIndex = 1
+        }
+        slides[slideIndex - 1].style.display = "block";
+        setTimeout("showSlides()", "2000");
+    }
+
+    $(document).on('click', '#search', function() {
+        if ($("#search_input").val() != "") {
+            $(".shop_search").each(function() {
+                $(this).css("display", "none");
+            })
+            $(".shop_search").each(function() {
+                var card = this;
+                $($(this).attr("type").split(",")).each(function(id, value) {
+                    if (value == $("#search_input").val()) {
+                        $(card).css("display", "block");
+                    }
+                })
+            })
+        }
+    })
+    $(document).on('click', '#home', function() {
+
+        window.location.href = "select_page.html";
+    })
+    $(document).on('click', '#account', function() {
+        account_click += 1;
+        if (account_click % 2 != 0) {
+            $(this).css("background-color", "rgba(221, 221, 221, 0.671)");
+            $(".card").css("display", "block");
+        } else {
+            $(this).css("background-color", "rgba(0, 0, 0, 0)");
+            $(".card").css("display", "none");
+        }
+    })
+    $(document).on('click', '#shop3', function() {
+        $.ajax({
+            url: `shop_session.php`,
+            type: "post",
+            data: {
+                shop_id: $(this).attr("shop_id"),
+            },
+            dataType: "json",
+            success: function(response) {
+
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                console.log(XMLHttpRequest.status);
+            }
+        })
+        window.location.href = "shop1.html";
+    })
+    $(document).on('click', '.card', function() {
+        $(".select").addClass("unselect");
+        $(".select").css("background-color", "rgb(255, 255, 255)");
+        $(".select").removeClass("select");
+        $(this).addClass("select");
+        $(this).removeClass("unselect");
+        $(this).css("background-color", "#ddd");
+        $(".shop_search").each(function() {
+            $(this).css("display", "none");
+        })
+        $(".select").each(function() {
+            var select = this;
+            $(".shop_search").each(function() {
+                var card = this;
+                $($(this).attr("type").split(",")).each(function(id, value) {
+                    if (value == $(select).attr("title")) {
+                        $(card).css("display", "block");
+                    }
+                })
+            })
+        })
+        if ($(".select").attr("title") == "all") {
+            $(".shop_search").each(function() {
+                $(this).css("display", "block");
+            })
+        }
+    })
+
+    $(document).on('click', '#logout', function() {
+        $.ajax({
+            url: `logout.php`,
+            type: "post",
+            dataType: "json",
+            success: function(response) {
+
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                console.log(XMLHttpRequest.status);
+            }
+        })
+        window.location.href = "front_page.html";
+    })
+
+    $(document).on('click', '#login', function() {
+
+        window.location.href = "front_page.html";
+    })
+
+    var input = document.getElementById("search_input");
+    input.addEventListener("keyup", function(event) {
+        if (event.keyCode === 13) {
+            event.preventDefault();
+            document.getElementById("search").click();
+        }
+    });
+</script>
+
+</html>
