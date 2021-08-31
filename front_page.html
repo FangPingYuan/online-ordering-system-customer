@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="front_page_style.css?Date()">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>登入</title>
+
+</head>
+
+<body>
+
+
+    <div class="container-fluid background">
+        <div id="img_left"></div>
+        <div id="img_right"></div>
+        <img src="img/圖片1.png" id="img">
+        <div class="row">
+            <h4 class="content_title" id="title">六合夜市點餐系統</h4>
+        </div>
+        <div class="row">
+            <button type="button" id="sign_in" name="btn" class="btn btn-outline-light content_title">登入</button>
+            <button type="button" id="sign_up" name="btn" class="btn btn-outline-light content_title">註冊</button>
+        </div>
+        <div class="line content_title"></div>
+        <div class="content">
+        </div>
+    </div>
+
+</body>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#sign_in").click();
+    })
+    $(document).on('click', '[name="btn"]', function() {
+        $('[name="btn"]').each(function() {
+            $(this).removeClass("clicked");
+        })
+        $(this).addClass("clicked");
+    })
+    $(document).on('click', '#sign_in', function() {
+        $(".content").html("");
+        var html = `
+            <div class="row mt-4">
+                <i class="fa fa-envelope col-sm-1 my-3" style="position:relative;color:white;font-size:32px;z-index:5"></i>
+                <input class="col-8 user_input" placeholder="請輸入您的帳號(E-mail)" type="email" style="font-size:20px;border: 1px solid white;border-radius: 30px; background-color: transparent; height: 60px;" id="account" />
+            </div>
+            <div class="row mt-4">
+                <i class="fa fa-lock col-sm-1 my-2" style="color:white;font-size:40px;"></i>
+                <input class="col-8 user_input" placeholder="請輸入您的密碼" type="password" style="font-size:20px; border: 1px solid white;border-radius: 30px; background-color: transparent; height: 60px" id="password" />
+            </div>
+            <div class="row mt-4">
+                <div class="col-sm-1"></div>
+                <button class="col-8 sign" type="button" style="font-size:20px;border-radius: 30px;border:none; background-color: rgba(255, 255, 255, 0.5); height: 50px" id="btn_sign_in" >登入</button>
+            </div>
+            <div class="row mt-3">
+                <div class="col-4 mt-2" style="width:100px;border-top:solid rgba(255, 255, 255, 0.5) 3px;"></div>
+                <div class="col-1 mx-4" style="font-size: 20px;">或</div>
+                <div class="col-4 mt-2 hr_line" style="width:100px;border-top:solid rgba(255, 255, 255, 0.5) 3px;"></div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-sm-1"></div>
+                <button class="col-8 go" id="go" type="button" style="color:white; font-size:20px;border-radius: 30px;border:none; background-color: rgba(255, 0, 0, 0.5); height: 50px">直接點餐</button>
+            </div>
+        `;
+        $(".content").append(html);
+    })
+    $(document).on('click', '#sign_up', function() {
+        $(".content").html("");
+        var html = `
+            <div class="row mt-2">
+                <i class="fa fa-user col-sm-1" style="color:white;font-size:40px;"></i>
+                <input class="col-8 user_input" placeholder="請輸入您的姓名" type="text" style="font-size:20px;border: 1px solid white;border-radius: 30px; background-color: transparent; height: 40px" id="name" />
+            </div>
+            <div class="row mt-2">
+                <i class="fa fa-envelope col-sm-1 my-1" style="color:white;font-size:32px;"></i>
+                <input class="col-8 user_input" placeholder="請輸入您的帳號(E-mail)" type="email" style="font-size:20px; border: 1px solid white;border-radius: 30px; background-color: transparent; height: 40px" id="account_signup" />
+            </div>
+            <div class="row mt-2">
+                <i class="fa fa-lock col-sm-1 my-1" style="color:white;font-size:40px;"></i>
+                <input class="col-8 user_input" placeholder="請輸入您的密碼" type="password" style="font-size:20px; border: 1px solid white;border-radius: 30px; background-color: transparent; height: 40px" id="password_signup" />
+            </div>
+            <div class="row mt-2">
+                <i class="fa fa-lock col-sm-1 my-1" style="color:white;font-size:40px;"></i>
+                <input class="col-8 user_input" placeholder="確認密碼 請再次輸入您的密碼" type="password" style="font-size:20px; border: 1px solid white;border-radius: 30px; background-color: transparent; height: 40px" id="password_check" />
+            </div>
+            <div class="row mt-2">
+                <i class="fa fa-phone col-sm-1 my-1" style="color:white;font-size:40px;"></i>
+                <input class="col-8 user_input" placeholder="請輸入您的手機" type="text" style="font-size:20px; border: 1px solid white;border-radius: 30px; background-color: transparent; height: 40px" id="tel_signup" />
+            </div>
+            <div class="row mt-4">
+                <div class="col-sm-1"></div>
+                <button class="col-8 sign" type="button" style="font-size:20px;border-radius: 30px;border:none; background-color: rgba(255, 255, 255, 0.5); height: 50px" id="btn_sign_up" >註冊</button>
+            </div>
+        `;
+        $(".content").append(html);
+    })
+    $(document).on('click', '#go', function() {
+        $("#img").css('animation', 'MoveOutImg1 0.8s, MoveOutImg2 0.8s 1 0.8s');
+        $("#img").fadeOut(1600);
+        $("#img_right").css('animation', 'MoveToRightFadeOut 0.8s');
+        $("#img_right").fadeOut(800);
+        $("#img_left").css('animation', 'MoveToLeftFadeOut 0.8s');
+        $("#img_left").fadeOut(800);
+        $(".content").fadeOut(500);
+        $(".content_title").fadeOut(500);
+        $("#img").animate({
+            height: "100px"
+        }, function() {
+            // alert($("#account").val());
+            window.location.href = "select_page.html";
+        })
+    })
+    $(document).on('click', '#btn_sign_up', function() {
+        $.ajax({
+            url: `signup.php`,
+            type: "post",
+            async: false,
+            data: {
+                e_mail: $("#account_signup").val(),
+                name: $("#name").val(),
+                password: $("#password_signup").val(),
+                phone: $("#tel_signup").val()
+            },
+            success: function(response) {
+                if (response == "Invalid email format") {
+                    alert("E-mail格式錯誤");
+                } else {
+                    alert("註冊成功");
+                    $("#sign_in").click();
+                }
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                console.log(XMLHttpRequest.status);
+            }
+        })
+    })
+    $(document).on('click', '#to_sign_in', function() {
+        let account = $("#account_signup").val();
+        $("#sign_in").click();
+        $("#account").val(account);
+    })
+    $(document).on('click', '#btn_sign_in', function() {
+        $.ajax({
+            url: `login.php`,
+            type: "post",
+            async: false,
+            data: {
+                e_mail: $("#account").val(),
+                password: $("#password").val()
+            },
+            success: function(response) {
+                if (response == 1) {
+
+                    $("#img").css('animation', 'MoveOutImg1 0.8s, MoveOutImg2 0.8s 1 0.8s');
+                    $("#img").fadeOut(1600);
+                    $("#img_right").css('animation', 'MoveToRightFadeOut 0.8s');
+                    $("#img_right").fadeOut(800);
+                    $("#img_left").css('animation', 'MoveToLeftFadeOut 0.8s');
+                    $("#img_left").fadeOut(800);
+                    $(".content").fadeOut(500);
+                    $(".content_title").fadeOut(500);
+                    $("#img").animate({
+                        height: "100px"
+                    }, function() {
+                        // alert($("#account").val());
+
+                        window.location.href = "select_page.html";
+                    })
+                } else {
+                    alert("噗~輸入有誤 或 你沒辦帳號!");
+                }
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                console.log(XMLHttpRequest.status);
+            }
+        })
+    })
+</script>
+
+</html>
