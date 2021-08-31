@@ -1,0 +1,268 @@
+body,
+html {
+    width: 100%;
+    height: 100%;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    font-family: 'Montserrat', sans-serif;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.background {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+#img_right {
+    height: 0;
+    width: 1500px;
+    border-bottom: 500px solid #FCD5B5;
+    border-left: 420px solid transparent;
+    display: block;
+    position: relative;
+    left: 290px;
+    top: -230px;
+    animation-name: MoveToLeft;
+    animation-duration: 0.8s;
+    animation-delay: 0s;
+    animation-iteration-count: 1;
+    z-index: 3;
+    -webkit-filter: drop-shadow(12px 12px 7px rgba(0, 0, 0, 0.7));
+    filter: drop-shadow(12px 12px 7px rgba(0, 0, 0, 0.7))
+}
+
+#img_left {
+    height: 0;
+    width: 500px;
+    border-top: 300px solid #3c3d79;
+    border-right: 250px solid transparent;
+    display: block;
+    position: relative;
+    left: -1px;
+    top: 300px;
+    animation-name: MoveToRight;
+    animation-duration: 0.8s;
+    animation-delay: 0s;
+    animation-iteration-count: 1;
+    z-index: 1;
+    -webkit-filter: drop-shadow(12px 12px 7px rgba(0, 0, 0, 0.7));
+    filter: drop-shadow(12px 12px 7px rgba(0, 0, 0, 0.7))
+}
+
+#img {
+    position: absolute;
+    display: block;
+    height: 500px;
+    width: 500px;
+    left: 80px;
+    top: 50px;
+    z-index: 2;
+    animation: MoveImg1 0.8s, MoveImg2 0.8s 1 0.8s;
+    -webkit-filter: drop-shadow(12px 12px 7px rgba(0, 0, 0, 0.7));
+    filter: drop-shadow(12px 12px 7px rgba(0, 0, 0, 0.7))
+}
+
+#title {
+    font-size: 50px;
+    position: absolute;
+    font-weight: bolder;
+    color: #3c3d79;
+    text-shadow: 0.1em 0.1em 0.15em #8f623d;
+    left: 750px;
+    top: 80px;
+    z-index: 3;
+    animation: fadein 1s 1;
+}
+
+#sign_in {
+    border-radius: 0%;
+    font-weight: bolder;
+    font-size: 20px;
+    position: absolute;
+    left: 700px;
+    top: 150px;
+    width: 300px;
+    z-index: 3;
+    border: none;
+    animation: fadein 1s 1;
+}
+
+#sign_up {
+    border-radius: 0%;
+    font-size: 20px;
+    font-weight: bolder;
+    position: absolute;
+    left: 1000px;
+    top: 150px;
+    width: 300px;
+    z-index: 3;
+    border: none;
+    animation: fadein 1s 1;
+}
+
+.clicked {
+    position: absolute;
+    top: 150px;
+    z-index: 3;
+    color: #3c3d79;
+    background-color: rgba(255, 255, 255, 0.5);
+    width: 300px;
+    border: none;
+}
+
+.line {
+    position: absolute;
+    left: 700px;
+    top: 192px;
+    width: 600px;
+    z-index: 3;
+    border-top: solid rgba(255, 255, 255, 0.5) 2px;
+    animation: fadein 1s 1;
+}
+
+.content {
+    position: absolute;
+    margin: 0 auto;
+    left: 750px;
+    top: 200px;
+    width: 600px;
+    height: 400px;
+    z-index: 4;
+    animation: fadein 1s 1;
+}
+
+.fade_out {
+    animation: fadeout 1s 1;
+    opacity: 0;
+}
+
+.go {
+    animation: scale 1s infinite;
+}
+
+.go:hover {
+    animation: scale 1s 0;
+    transform: scale(1.05);
+}
+
+.sign:hover {
+    transform: scale(1.05);
+}
+
+.alert-dark {
+    position: relative;
+    left: 800px;
+    top: 200px;
+    width: 600px;
+    height: 400px;
+    z-index: 4;
+    animation: fadein 1s 1;
+}
+
+@keyframes MoveToRight {
+    from {
+        left: -500px;
+    }
+    to {
+        left: -2px;
+    }
+}
+
+@keyframes MoveToLeft {
+    from {
+        left: 1200px;
+    }
+    to {
+        left: 290px;
+    }
+}
+
+@keyframes MoveImg1 {
+    from {
+        top: 500px;
+    }
+    to {
+        top: 30px;
+    }
+}
+
+@keyframes MoveImg2 {
+    from {
+        top: 30px;
+    }
+    to {
+        top: 50px;
+    }
+}
+
+@keyframes fadein {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeout {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes MoveOutImg1 {
+    from {
+        top: 50px;
+    }
+    to {
+        top: 30px;
+    }
+}
+
+@keyframes MoveOutImg2 {
+    from {
+        top: 30px;
+    }
+    to {
+        top: 700px;
+    }
+}
+
+@keyframes scale {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.03);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes MoveToRightFadeOut {
+    100% {
+        left: 1200px;
+    }
+    0% {
+        left: 290px;
+    }
+}
+
+@keyframes MoveToLeftFadeOut {
+    100% {
+        left: -500px;
+    }
+    0% {
+        left: -2px;
+    }
+}
