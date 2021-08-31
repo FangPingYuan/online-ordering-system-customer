@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="shop1_style.css?Date()">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>林家檸檬愛玉 菜單</title>
+
+</head>
+
+<body>
+    <div class="row">
+        <div class="topnav-centered col-6">
+            <input type="text" id="search_input" placeholder="  Search..." style="font-size:20px; border: 1px solid #3c3d79;border-radius: 30px; background-color: transparent; height: 40px; position: relative; top: 2%;" />
+            <a href="#search" id="search"><i class="fa fa-search" style="color:#3c3d79;font-size:32px;"></i></a>
+        </div>
+        <div class="col-5" style="text-align: right;margin: auto;">
+            <h5 id="username"></h5>
+        </div>
+        <div class="col-1 sign" id="user_area" style="text-align: left;margin: auto; ">
+            <a href="#logout" id="logout"><i class="fa fa-sign-out" title="登出" style="color:#3c3d79;font-size:40px;"></i></a>
+        </div>
+    </div>
+    <div class="container-fluid row">
+        <div class="col-9" id="menu_area">
+            <div class="row ml-2" id="img2">
+
+            </div>
+            <div class="row">
+                <div class="col-1"></div>
+                <div class="col-8 my-4">
+                    <h4 class="title" id="shopname"></h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-1"></div>
+                <div class="col-8 mx-2" id="introduction">
+                </div>
+            </div>
+
+        </div>
+        <div class="col-3">
+            <h4 style="text-align: center;" id="cart_title" class="my-4"><b>購物車</b></h4>
+            <div id="cart">
+            </div>
+            <div id="total_area">
+            </div>
+            <div id="send_area">
+            </div>
+        </div>
+
+    </div>
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal_header"></h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <h4 class="row mx-2 my-2" style="background-color: #f8d2e4;">甜度</h4>
+                <div class="form-inline mx-2">
+                    <input class="form-check-input mx-2" type="radio" name="sugar" id="sugar0" value="0">
+                    <label class="form-check-label" style="font-size: 24px;" for="sugar0">
+                        無糖
+                    </label>
+                    <input class="form-check-input ml-4" type="radio" name="sugar" id="sugar1" value="1">
+                    <label class="form-check-label" style="font-size: 24px;" for="sugar1">
+                        微糖(3分)
+                    </label>
+                    <input class="form-check-input ml-4" type="radio" name="sugar" id="sugar2" value="2">
+                    <label class="form-check-label" style="font-size: 24px;" for="sugar2">
+                        半糖(5分)
+                    </label>
+                    <input class="form-check-input ml-4" type="radio" name="sugar" id="sugar3" value="3">
+                    <label class="form-check-label" style="font-size: 24px;" for="sugar3">
+                        少糖(7分)
+                    </label>
+                    <input class="form-check-input ml-4" type="radio" name="sugar" id="sugar4" value="4">
+                    <label class="form-check-label" style="font-size: 24px;" for="sugar4">
+                        正常糖(10分)
+                    </label>
+                </div>
+                <br>
+                <h4 class="row mx-2 my-2" style="background-color: rgb(192, 243, 243);">冰塊</h4>
+                <div class="form-inline mx-2">
+                    <input class="form-check-input mx-2" type="radio" name="ice" id="hot" value="hot">
+                    <label class="form-check-label" style="font-size: 24px;" for="hot">
+                        熱飲
+                    </label>
+                    <input class="form-check-input ml-4" type="radio" name="ice" id="ice0" value="0">
+                    <label class="form-check-label" style="font-size: 24px;" for="ice0">
+                        完全去冰
+                    </label>
+                    <input class="form-check-input ml-4" type="radio" name="ice" id="ice1" value="1">
+                    <label class="form-check-label" style="font-size: 24px;" for="ice1">
+                        去冰(小碎冰)
+                    </label>
+                    <input class="form-check-input ml-4" type="radio" name="ice" id="ice2" value="2">
+                    <label class="form-check-label" style="font-size: 24px;" for="ice2">
+                        微冰(3分)
+                    </label>
+                    <input class="form-check-input ml-4" type="radio" name="ice" id="ice3" value="3">
+                    <label class="form-check-label" style="font-size: 24px;" for="ice3">
+                        少冰(7分)
+                    </label>
+                    <input class="form-check-input ml-4" type="radio" name="ice" id="ice4" value="4">
+                    <label class="form-check-label" style="font-size: 24px;" for="ice4">
+                        正常冰(10分)
+                    </label>
+                </div>
+                <br>
+                <h4 class="row mx-2 my-2" style="background-color:#FCD5B5;">大小</h4>
+                <div class="form-inline mx-2">
+                    <input class="form-check-input mx-2" type="radio" name="size" id="size_m" value="m">
+                    <label class="form-check-label" style="font-size: 24px;" for="size_m">
+                        中(M)
+                    </label>
+                    <input class="form-check-input ml-4" type="radio" name="size" id="size_l" value="l">
+                    <label class="form-check-label" style="font-size: 24px;" for="size_l">
+                        大(L)
+                    </label>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-1">
+                        <i class="fa fa-minus-circle count" id="minus" style="color:#65fcb1;font-size:60px;"></i>
+                    </div>
+                    <div class="col-1 my-2">
+                        <input type="text" id="count" value=0 style="text-align: center; font-size:20px; border: 1px solid #3c3d79;border-radius: 30px; background-color: transparent; height: 40px; width: 90%; position: absolute;" />
+                    </div>
+                    <div class="col-1 ml-4">
+                        <i class="fa fa-plus-circle count" id="plus" style="color:#ffb1d6;font-size:60px;"></i>
+                    </div>
+                    <div class="col-6"></div>
+                    <div class="col-auto">
+                        <button type="button" id="add" name="btn" class="count">加到購物車</button>
+                    </div>
+                </div>
+                <br>
+            </div>
+        </div>
+
+    </div>
+
+
+
+</body>
+
+<script type="text/javascript">
+    var price = [];
+    var total = 0;
+    var modal = document.getElementById("myModal");
+    // Get the button that opens the modal
+    var btn = document.getElementsByClassName("card");
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+    // When the user clicks on the button, open the modal
+    $(document).on('click', '.card', function() {
+            $("#modal_header").html($(this).attr("title"));
+            modal.style.display = "block";
+            price = [];
+            price.push($(this).attr("m"));
+            price.push($(this).attr("l"));
+        })
+        // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+            modal.style.display = "none";
+        }
+        // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+    var order_item = [];
+    $(function() {
+
+
+        // get user
+        $.ajax({
+            url: `user.php`,
+            type: "get",
+            async: false,
+            dataType: "json",
+            success: function(response) {
+                $(response).each(function() {
+                    $("#username").html(`Hi! ${this['name']}`);
+                })
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                console.log(XMLHttpRequest.status);
+            }
+        })
+
+        if ($("#username").html() == "") {
+            $("#user_area").html(`<a href=#login" id="login"><i class="fa fa-sign-in" title="登入" style="color:#3c3d79;font-size:40px;"></i></a>`);
+
+        }
+
+        // get introduction
+        var item_name = [];
+
+        $.ajax({
+            url: `introduction.php`,
+            type: "get",
+            dataType: "json",
+            success: function(response) {
+                $(response).each(function() {
+                    $("#introduction").html(`<h5>${this['introduction']}</h5>`);
+                    $("#img2").html(`<img src="${this['img2']}" height="400" width="100%">`);
+                    $("#shopname").html(this['name']);
+                })
+
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                console.log(XMLHttpRequest.status);
+            }
+        })
+
+        // get menu
+        var item_name = [];
+        $.ajax({
+            url: `menu.php`,
+            type: "get",
+            dataType: "json",
+            success: function(response) {
+                var id = 0;
+                var item_id = 0;
+                $(response).each(function() {
+                    if (id % 2 == 0) {
+                        if (item_name.indexOf(this['item_name']) == -1) {
+                            item_name.push(this['item_name']);
+                            $("#menu_area").append(`
+                                <div class="row my-4" id="menu_area_${id + 1}">
+                                    <div class="col-1"></div>
+                                    <div class="card col-5" title="${this['item_name']}" M="${this['price']}" id="menu_title_${item_id}">
+                                        <div class="container my-3">
+                                            <h4><b>${this['item_name']}</b></h4>
+                                            <p>${this['item_name_en']}</p>
+                                            <h6 id="menu_${item_id}">M) NT$${this['price']} &emsp; L) NT$</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            `);
+                            id += 1;
+                        } else {
+                            $(`#menu_title_${item_id}`).attr("L", this['price']);
+                            $(`#menu_${item_id}`).append(this['price']);
+                            item_id += 1;
+                        }
+                    } else {
+                        if (item_name.indexOf(this['item_name']) == -1) {
+                            item_name.push(this['item_name']);
+                            $(`#menu_area_${id}`).append(`
+                                <div class="col-1"></div>
+                                <div class="card col-5" title="${this['item_name']}" M="${this['price']}" id="menu_title_${item_id}">
+                                    <div class="container my-3">
+                                        <h4><b>${this['item_name']}</b></h4>
+                                        <p>${this['item_name_en']}</p>
+                                        <h6 id="menu_${item_id}">M) NT$${this['price']} &emsp; L) NT$</h6>
+                                    </div>
+                                </div>
+                            `);
+                            id += 1;
+                        } else {
+                            $(`#menu_title_${item_id}`).attr("L", this['price']);
+                            $(`#menu_${item_id}`).append(this['price']);
+                            item_id += 1;
+                        }
+                    }
+                })
+
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                console.log(XMLHttpRequest.status);
+            }
+        })
+    })
+
+    $(document).on('click', '#plus', function() {
+        if (parseInt($("#count").val()) + 1 <= 50) {
+            $("#count").val(parseInt($("#count").val()) + 1);
+        }
+    })
+
+    $(document).on('click', '#minus', function() {
+        if (parseInt($("#count").val()) - 1 >= 0) {
+            $("#count").val(parseInt($("#count").val()) - 1);
+        }
+    })
+
+    $(document).on('click', '#add', function() {
+        if ($('input[name="sugar"]:checked').next('label:first').html() != "undefined" && $('input[name="ice"]:checked').next('label:first').html() && $('input[name="size"]:checked').next('label:first').html()) {
+            var total_item = 0;
+            var size = "M";
+            if ($('input[name="size"]:checked').val() == "m") {
+                total_item = parseInt(price[0]) * parseInt($("#count").val());
+            } else {
+                size = "L";
+                total_item = parseInt(price[1]) * parseInt($("#count").val());
+            }
+            total += total_item;
+            order_item.push({
+                item_name: $("#modal_header").html(),
+                size: size,
+                ice: $('input[name="ice"]:checked').val(),
+                sugar: $('input[name="sugar"]:checked').val(),
+                amount: $("#count").val(),
+            });
+            $("#cart").append(`
+                <div class="container row">
+                    <h4 class="col-12"><b>${$("#modal_header").html()}</b></h4>
+                    <p class="col-12">${$('input[name="sugar"]:checked').next('label:first').html()}&emsp;${$('input[name="ice"]:checked').next('label:first').html()}&emsp;${$('input[name="size"]:checked').next('label:first').html()}</p>
+                    <h6 class="col-6">數量： ${$("#count").val()}</h6>
+                    <h6 class="col-6" style="text-align: right;">$ ${total_item}</h6>
+                    <hr class="col-12" />
+                </div>
+            `);
+            $("#total_area").html(`<h5 style="text-align: center;" class="my-4"><b>總共：${total}元</b></h5>`);
+            $("#send_area").html(`<button type="button" id="send" name="btn" class="count">送出訂單</button>`);
+            modal.style.display = "none";
+
+            $("[name='sugar']").each(function() {
+                $(this).prop("checked", false);
+            })
+            $("[name='ice']").each(function() {
+                $(this).prop("checked", false);
+            })
+            $("[name='size']").each(function() {
+                $(this).prop("checked", false);
+            })
+            $("#count").val(0);
+        } else {
+            alert("請確認填寫正確");
+        }
+    })
+
+    $(document).on('click', '#send', function() {
+        console.log(order_item);
+        $.ajax({
+            url: `order.php`,
+            type: "post",
+            data: {
+                data: order_item,
+            },
+            dataType: "json",
+            success: function(response) {
+
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                console.log(XMLHttpRequest.status);
+            }
+        })
+        alert("已經將您的訂單成功送出囉!!")
+        $("#cart").html(``);
+        $("#total_area").html(``);
+        $("#send_area").html(``);
+    })
+
+    $(document).on('click', '#logout', function() {
+        $.ajax({
+            url: `logout.php`,
+            type: "post",
+            dataType: "json",
+            success: function(response) {
+
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                console.log(XMLHttpRequest.status);
+            }
+        })
+        window.location.href = "front_page.html";
+    })
+
+    $(document).on('click', '#login', function() {
+
+        window.location.href = "front_page.html";
+    })
+</script>
+
+</html>
